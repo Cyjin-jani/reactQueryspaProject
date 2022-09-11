@@ -13,13 +13,20 @@ function queryErrorHandler(error: unknown): void {
 
   // prevent duplicate toasts
   toast.closeAll();
-  toast({ id, title, status: 'error', variant: 'subtle', isClosable: true });
+  // toast({ id, title, status: 'error', variant: 'subtle', isClosable: true });
+  // 기존에 id를 넣어주는 경우, 값이 중복되어 토스트 메세지가 나타나지 않아 id를 제거함
+  // id는 기본적으로 unique한 아이디를 만들어주므로 따로 지정하지 않아도 되는것으로 보인다.
+  toast({ title, status: 'error', variant: 'subtle', isClosable: true });
 }
 
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       onError: queryErrorHandler,
+      retry: false,
+    },
+    mutations: {
+      retry: false,
     },
   },
 });
