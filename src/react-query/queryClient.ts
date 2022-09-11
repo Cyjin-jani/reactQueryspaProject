@@ -36,3 +36,11 @@ export const queryClient = new QueryClient({
 // 해당 핸들러를 적용할 수 있다. (물론 위와 같이 queryClient의 defaultOptions에도 적용이 가능)
 // 이렇게 하면 react-query에서 에러 핸들링을 하는 것이 아닌,
 // react error boundary를 이용하여 에러 핸들링을 할 수 있게 된다.
+
+/** Options for pre-populating data
+ *                 where to use ?      data from ?     added to cache ?
+ * prefetchQuery   queryClient(method) server          yes
+ * setQueryData    queryClient(method) client          yes
+ * placeholderData useQuery(option)    client          no
+ * initialData     useQuery(option)    client          yes
+ */
