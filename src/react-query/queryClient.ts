@@ -24,6 +24,12 @@ export const queryClient = new QueryClient({
     queries: {
       onError: queryErrorHandler,
       retry: false,
+      // 리패칭을 자주 할 필요 없는 데이터가 대부분이라서 아래와 같이 설정함
+      staleTime: 600000, // 10min
+      cacheTime: 900000, // 15min (staleTime이 cacheTime을 넘을 수 없도록 설정)
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false,
     },
     mutations: {
       retry: false,
